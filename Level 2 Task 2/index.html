@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikola Tesla Tribute</title>
+    <style>
+        body {
+            font-family: 'Times new roman', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #1d0454;
+            color: #fff;
+            padding: 0.6em;
+            font-size: 1em;
+        }
+
+        #main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        #details {
+            text-align: left;
+            margin-top: 20px;
+            display: none;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #1a0539;
+            color: #fff;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nikola Tesla</h1>
+        <h2>American inventor and electrical engineer</h2>
+    </header>
+
+    <div id="main">
+        <img src="tesla1.jpg" alt="Nikola Tesla">
+        <p>
+            Nikola Tesla, a Serbian-American inventor, electrical engineer, mechanical engineer, and futurist, is best known for his contributions to the development of the modern alternating current (AC) electricity supply system.
+        </p>
+        <p>
+            Tesla's numerous inventions and ideas had a profound impact on the world, influencing the development of radio, radar, X-rays, and electric power. His innovative thinking and visionary approach continue to inspire scientists, engineers, and inventors to this day.
+        </p>
+        <p>
+            Beyond his scientific contributions, Tesla's eccentric personality and unique lifestyle have also contributed to his legendary status. His dedication to advancing science for the betterment of humanity is a testament to his remarkable legacy.
+        </p>
+
+        <button onclick="toggleDetails()">Show More Details</button>
+
+        <div id="details">
+            <h2>Additional Details</h2>
+            <p>
+                Born on July 10, 1856, in Smiljan, Austrian Empire (modern-day Croatia), Nikola Tesla emigrated to the United States in 1884. Throughout his career, he secured numerous patents for his inventions and conducted groundbreaking experiments in the field of electricity and magnetism.
+            </p>
+            <p>
+                Tesla's rivalry with Thomas Edison, known as the "War of Currents," was a defining moment in the history of electrical power. Despite facing financial difficulties later in life, Tesla continued his work and left an indelible mark on the scientific community.
+            </p>
+            <p>
+                Nikola Tesla passed away on January 7, 1943, in New York City. His legacy lives on, and his contributions to science and technology are celebrated worldwide.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by ASTECH</p>
+    </footer>
+
+    <script>
+        function toggleDetails() {
+            var detailsElement = document.getElementById('details');
+            var buttonElement = document.querySelector('button');
+
+            if (detailsElement.style.display === 'none') {
+                detailsElement.style.display = 'block';
+                buttonElement.textContent = 'Show Less Details';
+            } else {
+                detailsElement.style.display = 'none';
+                buttonElement.textContent = 'Show More Details';
+            }
+        }
+    </script>
+
+</body>
+</html>

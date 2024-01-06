@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: url('background-image.jpg') center center/cover no-repeat fixed;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            padding: 1em;
+            font-size: 1.5em;
+        }
+
+        #description {
+            background-color: rgba(251, 250, 250, 0.903);
+            color: #060101e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        #main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(5, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgb(240, 237, 237);
+            background-color: #080000;
+            transition: background-color 0.3s ease;
+        }
+
+        li.completed {
+            background-color: #d3ffd3;
+            color: #070101;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            padding: 1em;
+            border-radius: 0 0 8px 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin: 0;">To-Do Application</h1>
+    </header>
+
+    <div id="description">
+        <p>This is a simple and stylish to-do app that allows you to organize your daily tasks. Add, edit, mark as complete, and delete tasks effortlessly. Stay productive!</p>
+    </div>
+
+    <div id="main">
+        <input type="text" id="taskInput" placeholder="Enter task...">
+        <button onclick="addTask()">Add Task</button>
+
+        <h2 style="margin-top: 20px; width: 100%;">Pending Tasks</h2>
+        <ul id="pendingTasks"></ul>
+
+        <h2 style="margin-top: 20px; width: 100%;">Completed Tasks</h2>
+        <ul id="completedTasks"></ul>
+    </div>
+
+    <footer>
+        <p style="margin: 0;">Created by ASTECH</p>
+    </footer>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById('taskInput');
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== '') {
+                var currentDate = new Date();
+                var dateString = currentDate.toLocaleDateString();
+                var timeString = currentDate.toLocaleTimeString();
+
+                var task = {
+                    text: taskText,
+                    date: dateString,
+                    time: timeString,
+                    completed: false
+                };
+
+                var pendingTasksList = document.getElementById('pendingTasks');
+                var newTaskItem = document.createElement('li');
+                newTaskItem.innerHTML = `
+                    <span>${task.text} - ${task.date} ${task.time}</span>
+                    <button onclick="completeTask(this)">Complete</button>
+                    <button onclick="editTask(this)">Edit</button>
+                    <button onclick="deleteTask(this)">Delete</button>
+                `;
+
+                pendingTasksList.appendChild(newTaskItem);
+                taskInput.value = '';
+            }
+        }
+
+        function completeTask(button) {
+            var taskItem = button.parentNode;
+            var taskText = taskItem.querySelector('span').innerText;
+
+            var completedTasksList = document.getElementById('completedTasks');
+            var newCompletedTaskItem = document.createElement('li');
+            newCompletedTaskItem.innerHTML = `${taskText} - Completed`;
+            newCompletedTaskItem.classList.add('completed');
+
+            completedTasksList.appendChild(newCompletedTaskItem);
+            taskItem.parentNode.removeChild(taskItem);
+        }
+
+        function editTask(button) {
+            var taskItem = button.parentNode;
+            var taskText = taskItem.querySelector('span').innerText;
+
+            var newTaskText = prompt('Edit task:', taskText);
+
+            if (newTaskText !== null && newTaskText !== '') {
+                taskItem.querySelector('span').innerText = newTaskText;
+            }
+        }
+
+        function deleteTask(button) {
+            var taskItem = button.parentNode;
+            taskItem.parentNode.removeChild(taskItem);
+        }
+    </script>
+
+</body>
+</html>
